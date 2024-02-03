@@ -21,8 +21,16 @@ const CharactersStack = createNativeStackNavigator<StackParamList>();
 
 const CharactersStackNavigator = () => (
   <CharactersStack.Navigator>
-    <CharactersStack.Screen name="Heroes" component={CharactersScreen} />
-    <CharactersStack.Screen name="Details" component={CharacterDetailsScreen} />
+    <CharactersStack.Screen
+      name="Heroes"
+      component={CharactersScreen}
+      options={{headerTitleAlign: 'center'}}
+    />
+    <CharactersStack.Screen
+      name="Details"
+      component={CharacterDetailsScreen}
+      options={{headerTitleAlign: 'center'}}
+    />
   </CharactersStack.Navigator>
 );
 
@@ -47,6 +55,7 @@ export const MainTabNavigator = () => (
         tabBarIcon: ({focused}) => (
           <Icon size={24} source="cog" color={focused ? 'red' : 'grey'} />
         ),
+        headerTitleAlign: 'center',
       }}
       name="Settings"
       component={SettingsScreen}
