@@ -7,7 +7,7 @@ export type Character = {
   hair_color: string;
   skin_color: string;
   eye_color: string;
-  gender: string;
+  gender: 'female' | 'male' | string;
   homeworld: string;
   birth_year: string;
   films: string[];

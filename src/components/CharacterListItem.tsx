@@ -1,7 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
 import {Text, Icon} from 'react-native-paper';
-import {useState} from 'react';
 
 import type {Character} from '../types';
 
@@ -9,20 +8,26 @@ type Props = {
   character: Character;
   onPress: () => void;
   order: number;
+  onLike: () => void;
+  isLiked: boolean;
 };
 
-export const CharacterListItem = ({character, onPress, order}: Props) => {
-  const [liked, setLiked] = useState(false);
-
+export const CharacterListItem = ({
+  character,
+  onPress,
+  order,
+  onLike,
+  isLiked,
+}: Props) => {
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity style={styles.heroName} onPress={onPress}>
         <Text variant="bodyLarge">
           {order}. {character.name}
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setLiked(!liked)}>
-        <Icon source="heart" size={24} color={liked ? 'red' : 'grey'} />
+      <TouchableOpacity style={styles.like} onPress={onLike}>
+        <Icon source="heart" size={24} color={isLiked ? 'red' : 'grey'} />
       </TouchableOpacity>
     </View>
   );
@@ -33,8 +38,12 @@ const styles = StyleSheet.create({
     padding: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderColor: 'grey',
     marginTop: 6,
+  },
+  like: {
+    width: '10%',
+  },
+  heroName: {
+    width: '90%',
   },
 });
