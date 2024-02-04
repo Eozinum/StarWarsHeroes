@@ -1,7 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query';
 import {charactersApi} from './charactersApi';
-import createDebugger from 'redux-flipper';
 import likesReducer from './likesSlice';
 
 export const store = configureStore({
@@ -9,13 +8,8 @@ export const store = configureStore({
     [charactersApi.reducerPath]: charactersApi.reducer,
     likes: likesReducer,
   },
-  middleware: getDefaultMiddleware => {
-    const middleware = getDefaultMiddleware().concat(charactersApi.middleware);
-    if (__DEV__) {
-      middleware.push(createDebugger() as any);
-    }
-    return middleware;
-  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(charactersApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

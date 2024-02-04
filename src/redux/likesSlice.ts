@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import type {PayloadAction} from '@reduxjs/toolkit';
 import type {RootState} from '.';
+import type {PayloadAction} from '@reduxjs/toolkit';
 
 type LikesState = {
   likes: string[];

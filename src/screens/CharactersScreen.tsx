@@ -1,14 +1,22 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
 import {FlatList, StyleSheet, View, ActivityIndicator} from 'react-native';
-import type {StackParamList} from '../navigation';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {CharacterListItem, CharacterStatistics} from '../components';
 import {Divider, useTheme} from 'react-native-paper';
-
+import {CharacterListItem, CharacterStatistics} from '../components';
+import {useCharacters} from '../hooks';
 import {useAppDispatch} from '../redux/hooks';
 import {handleLike} from '../redux/likesSlice';
-import {useCharacters} from '../hooks';
+import type {StackParamList} from '../navigation';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+const Footer = () => {
+  const theme = useTheme();
+  return (
+    <View style={styles.loaderWrapper}>
+      <ActivityIndicator color={theme.colors.tertiary} />
+    </View>
+  );
+};
+
+const ListDivider = () => <Divider bold />;
 
 export const CharactersScreen = ({
   navigation,
@@ -24,7 +32,7 @@ export const CharactersScreen = ({
     isFetching,
   } = useCharacters();
 
-  if (!characters) {
+  if (!characters?.length) {
     return (
       <View style={[styles.loader, {backgroundColor: theme.colors.background}]}>
         <ActivityIndicator size="large" color={theme.colors.tertiary} />
@@ -46,14 +54,8 @@ export const CharactersScreen = ({
           data={characters}
           onEndReached={loadMoreCharacters}
           onEndReachedThreshold={0.5}
-          ItemSeparatorComponent={() => <Divider bold />}
-          ListFooterComponent={() => (
-            <View style={styles.loaderWrapper}>
-              {isFetching && (
-                <ActivityIndicator color={theme.colors.tertiary} />
-              )}
-            </View>
-          )}
+          ItemSeparatorComponent={ListDivider}
+          ListFooterComponent={isFetching ? Footer : null}
           renderItem={({item, index}) => (
             <CharacterListItem
               order={index + 1}

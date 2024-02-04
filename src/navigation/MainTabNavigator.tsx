@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Icon, useTheme} from 'react-native-paper';
 import {CharacterDetailsScreen, CharactersScreen} from '../screens';
 import type {Character} from '../types';

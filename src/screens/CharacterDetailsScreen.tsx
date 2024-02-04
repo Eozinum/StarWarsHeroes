@@ -1,10 +1,9 @@
-import React from 'react';
+import axios from 'axios';
+import {useEffect, useState} from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {Icon, Text, useTheme} from 'react-native-paper';
-import axios from 'axios';
 import type {StackParamList} from '../navigation';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useEffect, useState} from 'react';
 
 export const CharacterDetailsScreen = ({
   route,

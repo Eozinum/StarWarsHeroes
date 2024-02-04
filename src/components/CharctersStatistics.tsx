@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import {View, StyleSheet} from 'react-native';
 import {Text, useTheme, Button} from 'react-native-paper';
 

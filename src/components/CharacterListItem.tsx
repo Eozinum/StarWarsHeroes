@@ -1,7 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
 import {Text, Icon, useTheme} from 'react-native-paper';
-
 import type {Character} from '../types';
 
 type Props = {

@@ -46,4 +46,4 @@ This app lets you explore information about different characters from StarWars u
 - Navigation - react-navigation
 - State management - RTK, RTKQuery
 - UI and theming - React Native Paper, react-native vector icons
-- Debug - Flipper and plugin for Redux
+- Debug - Flipper
