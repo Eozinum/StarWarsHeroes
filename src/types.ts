@@ -1,5 +1,3 @@
-import {RouteProp} from '@react-navigation/native';
-
 export type Character = {
   name: string;
   height: string;
@@ -12,13 +10,5 @@ export type Character = {
   birth_year: string;
   films: string[];
   url: string;
+  starships: string[];
 };
-
-export type CharacterDetailsParams = {
-  character: Character;
-};
-
-export type CharacterDetailsScreenRouteProp = RouteProp<
-  {params: CharacterDetailsParams},
-  'params'
->;

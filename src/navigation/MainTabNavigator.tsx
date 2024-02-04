@@ -1,64 +1,59 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Icon} from 'react-native-paper';
-import {
-  CharacterDetailsScreen,
-  CharactersScreen,
-  SettingsScreen,
-} from '../screens';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Icon, useTheme} from 'react-native-paper';
+import {CharacterDetailsScreen, CharactersScreen} from '../screens';
 import type {Character} from '../types';
 
 const Tab = createBottomTabNavigator();
 
 export type StackParamList = {
   Heroes: undefined;
-  Details: {character: Character};
+  Details: {character: Character; isLiked: boolean};
 };
 
 const CharactersStack = createNativeStackNavigator<StackParamList>();
 
-const CharactersStackNavigator = () => (
-  <CharactersStack.Navigator>
-    <CharactersStack.Screen
-      name="Heroes"
-      component={CharactersScreen}
-      options={{headerTitleAlign: 'center'}}
-    />
-    <CharactersStack.Screen
-      name="Details"
-      component={CharacterDetailsScreen}
-      options={{headerTitleAlign: 'center'}}
-    />
-  </CharactersStack.Navigator>
-);
+const CharactersStackNavigator = () => {
+  const theme = useTheme();
 
-export const MainTabNavigator = () => (
-  <Tab.Navigator
-    screenOptions={{
-      tabBarActiveTintColor: 'red',
-      tabBarInactiveTintColor: 'grey',
-    }}>
-    <Tab.Screen
-      name="Home"
-      options={{
-        tabBarIcon: ({focused}) => (
-          <Icon size={24} source="alien" color={focused ? 'red' : 'grey'} />
-        ),
-        headerShown: false,
-      }}
-      component={CharactersStackNavigator}
-    />
-    <Tab.Screen
-      options={{
-        tabBarIcon: ({focused}) => (
-          <Icon size={24} source="cog" color={focused ? 'red' : 'grey'} />
-        ),
+  return (
+    <CharactersStack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: theme.colors.background},
+        headerTintColor: theme.colors.primary,
         headerTitleAlign: 'center',
-      }}
-      name="Settings"
-      component={SettingsScreen}
-    />
-  </Tab.Navigator>
-);
+      }}>
+      <CharactersStack.Screen name="Heroes" component={CharactersScreen} />
+      <CharactersStack.Screen
+        name="Details"
+        component={CharacterDetailsScreen}
+      />
+    </CharactersStack.Navigator>
+  );
+};
+
+export const MainTabNavigator = () => {
+  const theme = useTheme();
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: theme.colors.tertiary,
+        tabBarInactiveTintColor: theme.colors.onSecondary,
+        headerTintColor: theme.colors.primary,
+        headerStyle: {backgroundColor: theme.colors.background},
+        tabBarStyle: {backgroundColor: theme.colors.background},
+        headerShown: false,
+        tabBarIcon: ({focused}) => (
+          <Icon
+            size={24}
+            source="alien"
+            color={focused ? theme.colors.tertiary : theme.colors.onSecondary}
+          />
+        ),
+      }}>
+      <Tab.Screen name="Home" component={CharactersStackNavigator} />
+    </Tab.Navigator>
+  );
+};

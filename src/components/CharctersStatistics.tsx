@@ -1,6 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
 import {View, StyleSheet} from 'react-native';
-import {Text, Button} from 'react-native-paper';
+import {Text, useTheme, Button} from 'react-native-paper';
 
 type Props = {
   femaleLikes: number;
@@ -15,23 +14,27 @@ export const CharacterStatistics = ({
   otherLikes,
   clearLikes,
 }: Props) => {
+  const theme = useTheme();
+
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.item}>
-        <Text>{femaleLikes}</Text>
-        <Text>Female</Text>
+    <View style={[styles.wrapper, {backgroundColor: theme.colors.background}]}>
+      <View style={[styles.item, {borderColor: theme.colors.tertiary}]}>
+        <Text variant="titleLarge">{femaleLikes}</Text>
+        <Text variant="labelSmall">Female</Text>
       </View>
-      <View style={styles.item}>
-        <Text>{maleLikes}</Text>
-        <Text>Male</Text>
+      <View style={[styles.item, {borderColor: theme.colors.tertiary}]}>
+        <Text variant="titleLarge">{maleLikes}</Text>
+        <Text variant="labelSmall">Male</Text>
       </View>
-      <View style={styles.item}>
-        <Text>{otherLikes}</Text>
-        <Text>Other</Text>
+      <View style={[styles.item, {borderColor: theme.colors.tertiary}]}>
+        <Text variant="titleLarge">{otherLikes}</Text>
+        <Text variant="labelSmall">Other</Text>
       </View>
       <Button
         style={styles.clearBtn}
         compact
+        buttonColor={theme.colors.tertiary}
+        textColor={theme.colors.background}
         mode="contained"
         onPress={clearLikes}>
         Clear Likes
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
     gap: 4,
     borderWidth: 1,
     borderRadius: 8,
-    width: 70,
+    width: '20%',
+    alignItems: 'center',
   },
   clearBtn: {
     borderRadius: 8,
