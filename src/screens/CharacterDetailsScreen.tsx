@@ -11,6 +11,7 @@ export const CharacterDetailsScreen = ({
   const theme = useTheme();
   const [home, setHome] = useState('');
   const {character, isLiked} = route.params;
+
   const {
     homeworld,
     birth_year,
@@ -22,6 +23,7 @@ export const CharacterDetailsScreen = ({
     mass,
     name,
     skin_color,
+    starships,
   } = character;
 
   useEffect(() => {
@@ -71,6 +73,7 @@ export const CharacterDetailsScreen = ({
             <Text variant="bodyLarge">Height: {height}</Text>
             <Text variant="bodyLarge">Mass: {mass}</Text>
             <Text variant="bodyLarge">Movies: {films.length}</Text>
+            <Text variant="bodyLarge">StarHips: {starships.length}</Text>
             <Text variant="bodyLarge">Home: {home}</Text>
           </View>
         </View>

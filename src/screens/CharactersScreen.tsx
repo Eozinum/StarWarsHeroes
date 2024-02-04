@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, View, ActivityIndicator} from 'react-native';
-import {Divider, useTheme} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import {CharacterListItem, CharacterStatistics} from '../components';
 import {useCharacters} from '../hooks';
 import {useAppDispatch} from '../redux/hooks';
@@ -16,7 +16,9 @@ const Footer = () => {
   );
 };
 
-const ListDivider = () => <Divider bold />;
+const FooterWitoutLoader = () => <View style={styles.loaderWrapper} />;
+
+const ListDivider = () => <View style={styles.divider} />;
 
 export const CharactersScreen = ({
   navigation,
@@ -55,7 +57,7 @@ export const CharactersScreen = ({
           onEndReached={loadMoreCharacters}
           onEndReachedThreshold={0.5}
           ItemSeparatorComponent={ListDivider}
-          ListFooterComponent={isFetching ? Footer : null}
+          ListFooterComponent={isFetching ? Footer : FooterWitoutLoader}
           renderItem={({item, index}) => (
             <CharacterListItem
               order={index + 1}
@@ -84,12 +86,15 @@ const styles = StyleSheet.create({
   },
   loaderWrapper: {
     paddingTop: 10,
-    paddingBottom: 30,
+    paddingBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   loader: {
     flex: 1,
     justifyContent: 'center',
+  },
+  divider: {
+    height: 4,
   },
 });

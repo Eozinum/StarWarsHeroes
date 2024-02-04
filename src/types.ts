@@ -10,4 +10,5 @@ export type Character = {
   birth_year: string;
   films: string[];
   url: string;
+  starships: string[];
 };
