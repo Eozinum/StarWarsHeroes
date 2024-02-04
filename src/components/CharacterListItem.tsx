@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {TouchableOpacity, StyleSheet, View} from 'react-native';
-import {Text, Icon} from 'react-native-paper';
+import {Text, Icon, useTheme} from 'react-native-paper';
 
 import type {Character} from '../types';
 
@@ -19,15 +19,23 @@ export const CharacterListItem = ({
   onLike,
   isLiked,
 }: Props) => {
+  const theme = useTheme();
+
   return (
     <View style={styles.wrapper}>
       <TouchableOpacity style={styles.heroName} onPress={onPress}>
-        <Text variant="bodyLarge">
+        <Text variant="titleMedium">
           {order}. {character.name}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.like} onPress={onLike}>
-        <Icon source="heart" size={24} color={isLiked ? 'red' : 'grey'} />
+        <Icon
+          source="heart"
+          size={24}
+          color={
+            isLiked ? theme.colors.tertiaryContainer : theme.colors.onSecondary
+          }
+        />
       </TouchableOpacity>
     </View>
   );

@@ -1,79 +1,49 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This project uses latest React Native setup.
 
-## Step 1: Start the Metro Server
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Step 1: Install depndencies and run Application
 
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+First, you need to clone repo and install dependencies (make sure you are usind at least node 18)
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+npm i
 ```
 
-### For iOS
+Then go to ios directory and install pods:
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+cd ios
+pod install
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Great! Now you can run the app! Run next command and follow instructions:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
+npm run start
 
-## Step 3: Modifying your App
+# or you can run only preffered platform:
 
-Now that you have successfully run the app, let's modify it.
+npx react-native run-ios #for IOS
+npx react-native run-android #for Android
+```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Step 2: Explore StarWars Heroes Application
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+This app lets you explore information about different characters from StarWars using https://swapi.dev/ API:
 
-## Congratulations! :tada:
+- There is a list of characters whith infinite scroll while there is data on api.
+- You can like/unlike characters.
+- When you press on specific character in the list app redirects you to the page with detailed information (you'll see a tiny heart icon in the bottom if you liked character).
+- There is a general info about liked characters by gender on the top of list (can be cleared by pressing "Clear" button)
+- Also you can see dark and light themes in the app which depend on device mode.
 
-You've successfully run and modified your React Native App. :partying_face:
+### Tools
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- Typescript
+- Navigation - react-navigation
+- State management - RTK, RTKQuery
+- UI and theming - React Native Paper, react-native vector icons
+- Debug - Flipper and plugin for Redux
